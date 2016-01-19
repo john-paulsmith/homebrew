@@ -49,6 +49,12 @@ class Subversion < Formula
   # Prevent linking into a Python Framework
   patch :DATA
 
+  # Fix subversion issue 2464, problems with unicode filenames
+  patch :p0 do
+    url "http://subversion.tigris.org/nonav/issues/showattachment.cgi/1291/svn_1.8.x_darwin_unicode_precomp.patch"
+    sha256 "2eaee628e3161bce4b1697660281cab30f42265369bfa7074ea435e441d543e7"
+  end
+
   if build.with?("perl") || build.with?("ruby")
     # If building bindings, allow non-system interpreters
     # Currently the serf -> scons dependency forces stdenv, so this isn't
